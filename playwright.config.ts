@@ -16,13 +16,15 @@ export default defineConfig({
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
-  use: {
-    /* Base URL to use in actions like `await page.goto('/')`. */
+   use: {
     baseURL: process.env.BASE_URL || 'http://104.168.59.50/articles',
-
-    /* Collect trace and screenshot when test fails. See https://playwright.dev/docs/trace-viewer */
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
+    /* Додаємо сповільнення та прибираємо перекладач */
+    launchOptions: {
+      slowMo: 800, // пауза 800 мс перед кожним кліком/введенням
+      args: ['--disable-features=Translate'],
+    },
   },
 
   /* Configure projects for major browsers */
